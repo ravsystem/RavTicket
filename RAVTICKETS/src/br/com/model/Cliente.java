@@ -9,16 +9,12 @@ public class Cliente {
 	
 	@Id	@GeneratedValue
 	private Long id;
-	private String nome;
+	private String razao;
+	private String fantasia;
+	private String telefone;
+	private String email;
 	private String data_cadastro;
 
-	public Cliente(Long id, String nome, String data_cadastro) {
-		
-		this.id = id;
-		this.nome = nome;
-		this.data_cadastro = data_cadastro;
-	}
-	
 	public Cliente() {}
 
 	public Long getId() {
@@ -29,12 +25,36 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getRazao() {
+		return razao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setRazao(String razao) {
+		this.razao = razao;
+	}
+
+	public String getFantasia() {
+		return fantasia;
+	}
+
+	public void setFantasia(String fantasia) {
+		this.fantasia = fantasia;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getData_cadastro() {
@@ -44,5 +64,5 @@ public class Cliente {
 	public void setData_cadastro(String data_cadastro) {
 		this.data_cadastro = data_cadastro;
 	}
-	
+
 }

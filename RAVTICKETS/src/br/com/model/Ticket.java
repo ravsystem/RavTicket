@@ -1,0 +1,122 @@
+package br.com.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Ticket {
+	
+	@Id @GeneratedValue
+	private Long id;
+	private String cliente;
+	private String categoria;
+	private String subCategoria;
+	private String itemCateg;
+	private String urgencia;
+	private String status;
+	private String agente;
+	private String titulo;
+	private String descr_problema;
+	private String o_que_foi_feito;
+	private String resolucao;
+	
+	public Ticket() {}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(String cliente) {
+		this.cliente = cliente;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getSubCategoria() {
+		return subCategoria;
+	}
+
+	public void setSubCategoria(String subCategoria) {
+		this.subCategoria = subCategoria;
+	}
+
+	public String getItemCateg() {
+		return itemCateg;
+	}
+
+	public void setItemCateg(String itemCateg) {
+		this.itemCateg = itemCateg;
+	}
+
+	public String getUrgencia() {
+		return urgencia;
+	}
+
+	public void setUrgencia(String urgencia) {
+		this.urgencia = urgencia;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getAgente() {
+		return agente;
+	}
+
+	public void setAgente(String agente) {
+		this.agente = agente;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getDescr_problema() {
+		return descr_problema;
+	}
+
+	public void setDescr_problema(String descr_problema) {
+		this.descr_problema = descr_problema;
+	}
+
+	public String getO_que_foi_feito() {
+		return o_que_foi_feito;
+	}
+
+	public void setO_que_foi_feito(String o_que_foi_feito) {
+		this.o_que_foi_feito = o_que_foi_feito;
+	}
+
+	public String getResolucao() {
+		return resolucao;
+	}
+
+	public void setResolucao(String resolucao) {
+		this.resolucao = resolucao;
+	}
+
+}

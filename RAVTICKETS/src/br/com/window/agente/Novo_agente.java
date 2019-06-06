@@ -9,14 +9,20 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 import br.com.connection.Conexao;
 import br.com.model.Agente;
+import br.com.model.AgenteTableModel;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -26,11 +32,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class Novo_agente extends JInternalFrame {
 	private JTextField txt_usuario;
 	private JPasswordField txt_senha;
 	private String[] tipos_agente = {"ADM","N1","N2"};
+	private JTable table;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -56,37 +65,56 @@ public class Novo_agente extends JInternalFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Novo_agente() {
 		getContentPane().setFont(new Font("Segoe UI Black", Font.BOLD, 11));
 		setBounds(100, 100, 950, 460);
 		
+		List<Agente> produts = Conexao.listarAgent();
+		
+		ArrayList dados = new ArrayList();
+		
+		for(int i = 0; i < produts.size(); i++) {
+			
+			Agente agent = new Agente();
+			agent.setId(produts.get(i).getId());
+			agent.setNome(produts.get(i).getNome());
+			agent.setTipo(produts.get(i).getTipo());
+			dados.add(agent);
+		}
+		
+		AgenteTableModel modelo = new AgenteTableModel(dados);
 		
 		JLabel lblCadastrarNovoAgente = new JLabel("Cadastrar novo Agente");
+		lblCadastrarNovoAgente.setBounds(10, 11, 510, 59);
 		lblCadastrarNovoAgente.setFont(new Font("SansSerif", Font.BOLD, 45));
 		
 		JLabel lblNome = new JLabel("Nome.:");
+		lblNome.setBounds(10, 90, 67, 24);
 		lblNome.setFont(new Font("SansSerif", Font.BOLD, 18));
 		
 		JLabel lblSenha = new JLabel("Senha.:");
+		lblSenha.setBounds(10, 128, 67, 24);
 		lblSenha.setFont(new Font("SansSerif", Font.BOLD, 18));
 		
 		JLabel lblNewLabel = new JLabel("Tipo.:");
+		lblNewLabel.setBounds(10, 166, 67, 24);
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
 		
 		txt_usuario = new JTextField();
+		txt_usuario.setBounds(81, 89, 136, 27);
 		txt_usuario.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		txt_usuario.setColumns(10);
 		
 		txt_senha = new JPasswordField();
+		txt_senha.setBounds(81, 127, 136, 27);
 		txt_senha.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		
 		JComboBox cb_tipo_usuario = new JComboBox(tipos_agente);
+		cb_tipo_usuario.setBounds(81, 165, 136, 27);
 		cb_tipo_usuario.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(10, 376, 98, 33);
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -103,12 +131,18 @@ public class Novo_agente extends JInternalFrame {
 					agente.setTipo(tipo);
 					Conexao.guardar(agente);
 					
+					modelo.addProduto(agente);
+					table.getModel();
+					
 				}else if(tipo.equals("N2")) {
 					Agente n2 = new Agente();
 					n2.setNome(usuario);
 					n2.setSenha(senha);
 					n2.setTipo(tipo);
 					Conexao.guardar(n2);
+					
+					modelo.addProduto(n2);
+					table.getModel();
 				}else {
 					
 					Agente n1 = new Agente();
@@ -116,6 +150,9 @@ public class Novo_agente extends JInternalFrame {
 					n1.setSenha(senha);
 					n1.setTipo(tipo);
 					Conexao.guardar(n1);
+					
+					modelo.addProduto(n1);
+					table.getModel();
 				}
 				
 				}catch(Exception io) {
@@ -132,6 +169,7 @@ public class Novo_agente extends JInternalFrame {
 		btnSalvar.setFont(new Font("SansSerif", Font.BOLD, 18));
 		
 		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.setBounds(120, 376, 110, 33);
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -143,6 +181,7 @@ public class Novo_agente extends JInternalFrame {
 		btnLimpar.setFont(new Font("SansSerif", Font.BOLD, 18));
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setBounds(242, 376, 107, 33);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -153,6 +192,7 @@ public class Novo_agente extends JInternalFrame {
 		btnVoltar.setFont(new Font("SansSerif", Font.BOLD, 18));
 		
 		JLabel label = new JLabel("<-");
+		label.setBounds(865, 0, 59, 34);
 		label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -160,65 +200,42 @@ public class Novo_agente extends JInternalFrame {
 			}
 		});
 		label.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(10)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblCadastrarNovoAgente, GroupLayout.PREFERRED_SIZE, 510, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
-									.addComponent(label, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-										.addComponent(lblNome, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(lblSenha, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(lblNewLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(cb_tipo_usuario, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(txt_senha)
-										.addComponent(txt_usuario)))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnSalvar)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnLimpar)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnVoltar)))
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblCadastrarNovoAgente, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-							.addGap(64)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNome)
-								.addComponent(txt_usuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(11)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblSenha)
-								.addComponent(txt_senha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel)
-								.addComponent(cb_tipo_usuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(139)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnSalvar)
-								.addComponent(btnLimpar)
-								.addComponent(btnVoltar)))
-						.addComponent(label, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(21, Short.MAX_VALUE))
-		);
-		getContentPane().setLayout(groupLayout);
+		
+		
+		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setShowVerticalLines(true);
+		table.setShowHorizontalLines(true);
+		table.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		table.setToolTipText("");
+		table.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		
+		table.setModel(modelo);
+		table.getColumnModel().getColumn(0).setPreferredWidth(30);
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(120);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(2).setPreferredWidth(60);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.setBounds(513, 76, 187, 333);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(462, 89, 462, 320);
+		getContentPane().setLayout(null);
+		getContentPane().add(lblCadastrarNovoAgente);
+		getContentPane().add(label);
+		getContentPane().add(lblNome);
+		getContentPane().add(lblSenha);
+		getContentPane().add(lblNewLabel);
+		getContentPane().add(cb_tipo_usuario);
+		getContentPane().add(txt_senha);
+		getContentPane().add(txt_usuario);
+		getContentPane().add(scrollPane);
+		getContentPane().add(btnSalvar);
+		getContentPane().add(btnLimpar);
+		getContentPane().add(btnVoltar);
+		
+		//getContentPane().add(table);
 
 	}
 }
