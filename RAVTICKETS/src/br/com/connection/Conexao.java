@@ -1,0 +1,72 @@
+package br.com.connection;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import br.com.model.Agente;
+
+public class Conexao {
+	
+	public static EntityManagerFactory emf;
+	
+	public static void iniciarFabrica() {
+		emf = Persistence.createEntityManagerFactory("ravsystem"); 
+	}
+	
+	public static void guardar(Object o) {
+		
+		EntityManager em = emf.createEntityManager();
+		
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		
+		em.persist(o);
+		et.commit();
+		em.close();
+	}
+	
+	public static List<Agente> listarAgent() {
+		
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("FROM Agente");
+		
+		List<Agente> listaAgentes = query.getResultList();
+        return listaAgentes;
+	}
+
+	public static boolean validaAgente(String operador, String senha) {
+		
+		boolean resultado = false;
+		
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("FROM Agente o where o.nome = :nome and o.senha = :senha");
+		query.setParameter("nome", operador);
+		query.setParameter("senha", senha);
+		
+		List<Agente> listaAgentes = query.getResultList();
+		
+		if (listaAgentes.size() > 0) resultado = true;	
+        
+		return resultado;
+	}
+	
+	public static boolean tipoAgente(String nome) {
+		
+		boolean resultado = false;
+		
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("FROM Agente o where o.nome = :nome and o.tipo = 'ADM' ");
+		query.setParameter("nome", nome);
+		
+		List<Agente> listaAgentes = query.getResultList();
+		
+		if(listaAgentes.size() > 0) resultado = true;
+		
+		return resultado;
+	}
+}
