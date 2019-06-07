@@ -23,6 +23,8 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import br.com.connection.Conexao;
 import br.com.model.Agente;
 import br.com.model.AgenteTableModel;
+import br.com.model.Nivel1;
+import br.com.model.Nivel2;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -122,48 +124,64 @@ public class Novo_agente extends JInternalFrame {
 				String senha = txt_senha.getText();
 				String tipo = cb_tipo_usuario.getSelectedItem().toString();
 				
-				try {
-				
 				if(tipo.equals("ADM")) {
 					Agente agente = new Agente();
 					agente.setNome(usuario);
 					agente.setSenha(senha);
 					agente.setTipo(tipo);
+					
+					try {
+					
 					Conexao.guardar(agente);
 					
-					modelo.addProduto(agente);
+					}catch(Exception io) {
+						JOptionPane.showMessageDialog(null, "Erro ao Gravar.:");
+					}
+					
+					modelo.addAgente(agente);
 					table.getModel();
 					
 				}else if(tipo.equals("N2")) {
-					Agente n2 = new Agente();
+					Agente n2 = new Nivel2();
 					n2.setNome(usuario);
 					n2.setSenha(senha);
 					n2.setTipo(tipo);
-					Conexao.guardar(n2);
 					
-					modelo.addProduto(n2);
+					try {
+					
+						Conexao.guardar(n2);
+					
+					}catch(Exception io) {
+						JOptionPane.showMessageDialog(null, "Erro ao Gravar.:");
+					}
+					
+					modelo.addAgente(n2);
 					table.getModel();
 				}else {
 					
-					Agente n1 = new Agente();
+					Agente n1 = new Nivel1();
 					n1.setNome(usuario);
 					n1.setSenha(senha);
 					n1.setTipo(tipo);
-					Conexao.guardar(n1);
 					
-					modelo.addProduto(n1);
+					try {
+						Conexao.guardar(n1);
+					
+					}catch(Exception io) {
+						JOptionPane.showMessageDialog(null, "Erro ao Gravar.:");
+					}
+					
+					modelo.addAgente(n1);
 					table.getModel();
 				}
 				
-				}catch(Exception io) {
-					JOptionPane.showMessageDialog(null, "Erro ao Gravar.:");
-				}
+				
 				
 				txt_usuario.setText("");
 				txt_senha.setText("");
 				cb_tipo_usuario.setSelectedIndex(0);
 				
-				JOptionPane.showMessageDialog(null, "Usuário Salvo com Sucesso!");
+				//JOptionPane.showMessageDialog(null, "Usuário Salvo com Sucesso!");
 			}
 		});
 		btnSalvar.setFont(new Font("SansSerif", Font.BOLD, 18));

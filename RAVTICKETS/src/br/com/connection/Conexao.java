@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import br.com.model.Agente;
+import br.com.model.Cliente;
 
 public class Conexao {
 	
@@ -37,6 +38,15 @@ public class Conexao {
 		
 		List<Agente> listaAgentes = query.getResultList();
         return listaAgentes;
+	}
+	
+	public static List<Cliente> listarClient() {
+		
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("FROM Cliente");
+		
+		List<Cliente> listaClientes = query.getResultList();
+        return listaClientes;
 	}
 
 	public static boolean validaAgente(String operador, String senha) {

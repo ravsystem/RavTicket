@@ -139,7 +139,7 @@ public class Novo_ticket extends JInternalFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 18));
-		btnNewButton.setBounds(911, 177, 90, 28);
+		btnNewButton.setBounds(898, 177, 103, 28);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Salvar");
@@ -175,7 +175,7 @@ public class Novo_ticket extends JInternalFrame {
 			}
 		});
 		button.setFont(new Font("SansSerif", Font.BOLD, 18));
-		button.setBounds(911, 333, 90, 28);
+		button.setBounds(898, 333, 103, 28);
 		getContentPane().add(button);
 		
 		JButton button_1 = new JButton("Limpar");
@@ -186,7 +186,7 @@ public class Novo_ticket extends JInternalFrame {
 			}
 		});
 		button_1.setFont(new Font("SansSerif", Font.BOLD, 18));
-		button_1.setBounds(911, 487, 90, 28);
+		button_1.setBounds(898, 487, 103, 28);
 		getContentPane().add(button_1);
 		
 		JComboBox comboBox_5 = new JComboBox();
