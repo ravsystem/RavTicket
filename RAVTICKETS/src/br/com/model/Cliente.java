@@ -14,6 +14,7 @@ public class Cliente {
 	private String telefone;
 	private String email;
 	private String data_cadastro;
+	private String cpf_cnpj;
 
 	public Cliente() {}
 
@@ -65,4 +66,12 @@ public class Cliente {
 		this.data_cadastro = data_cadastro;
 	}
 
+	public String getCpf_cnpj() {
+		return cpf_cnpj;
+	}
+
+	public void setCpf_cnpj(String cpf_cnpj) {
+		this.cpf_cnpj = cpf_cnpj;
+	}
+	
 }

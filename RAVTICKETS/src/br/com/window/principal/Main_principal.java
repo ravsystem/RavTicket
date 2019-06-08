@@ -11,7 +11,9 @@ import javax.swing.border.EmptyBorder;
 
 import br.com.connection.Conexao;
 import br.com.window.agente.Novo_agente;
-import br.com.window.cliente.Listar_cliente;
+import br.com.window.categoria.Nova_SubCategoria;
+import br.com.window.categoria.Nova_categoria;
+import br.com.window.categoria.Novo_itemCategoria;
 import br.com.window.cliente.Novo_cliente;
 import br.com.window.login.Login;
 import br.com.window.tickts.Novo_ticket;
@@ -128,25 +130,68 @@ public class Main_principal extends JFrame {
 		});
 		mnClientes.add(mntmNovo_1);
 		
-		JMenuItem mntmListar_1 = new JMenuItem("Listar");
-		mntmListar_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Listar_cliente listar_cliente = new Listar_cliente();
-				desktopPane.add(listar_cliente);
-				contentPane.add(desktopPane);
-				listar_cliente.setResizable(false);
-				centralizaForm(listar_cliente);
-				listar_cliente.show();
-			}
-		});
-		mnClientes.add(mntmListar_1);
-		
 		Component glue = Box.createGlue();
 		glue.setBackground(SystemColor.desktop);
 		menuBar.add(glue);
+		
+		JMenu mnCategoria = new JMenu("CATEGORIA");
+		mnCategoria.setForeground(Color.WHITE);
+		mnCategoria.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		menuBar.add(mnCategoria);
+		
+		JMenuItem mntmNovo_3 = new JMenuItem("Nova");
+		mntmNovo_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Nova_categoria nova_categoria = new Nova_categoria();
+				desktopPane.add(nova_categoria);
+				contentPane.add(desktopPane);
+				nova_categoria.setResizable(false);
+				centralizaForm(nova_categoria);
+				nova_categoria.show();
+			}
+		});
+		mnCategoria.add(mntmNovo_3);
 		menuBar.add(Box.createGlue());
+		
+		JMenu mnSubcategoria = new JMenu("SUBCATEGORIA");
+		mnSubcategoria.setForeground(Color.WHITE);
+		mnSubcategoria.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		menuBar.add(mnSubcategoria);
+		
+		JMenuItem mntmNova = new JMenuItem("Nova");
+		mntmNova.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Nova_SubCategoria nova_subcategoria = new Nova_SubCategoria();
+				desktopPane.add(nova_subcategoria);
+				contentPane.add(desktopPane);
+				nova_subcategoria.setResizable(false);
+				centralizaForm(nova_subcategoria);
+				nova_subcategoria.show();
+			}
+		});
+		mnSubcategoria.add(mntmNova);
 		menuBar.add(Box.createGlue());
+		
+		JMenu mnItemCategoria = new JMenu("ITEM CATEGORIA");
+		mnItemCategoria.setForeground(Color.WHITE);
+		mnItemCategoria.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		menuBar.add(mnItemCategoria);
+		
+		JMenuItem mntmNova_1 = new JMenuItem("Novo");
+		mntmNova_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Novo_itemCategoria nova_itemcategoria = new Novo_itemCategoria();
+				desktopPane.add(nova_itemcategoria);
+				contentPane.add(desktopPane);
+				nova_itemcategoria.setResizable(false);
+				centralizaForm(nova_itemcategoria);
+				nova_itemcategoria.show();
+			}
+		});
+		mnItemCategoria.add(mntmNova_1);
 		menuBar.add(Box.createGlue());
 		menuBar.add(Box.createGlue());
 		menuBar.add(Box.createGlue());

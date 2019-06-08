@@ -10,6 +10,7 @@ public class ItemCategoria {
 	@Id @GeneratedValue
 	private Long id;
 	private String nome;
+	private String Categoria;
 	private String urgencia;
 	
 	public ItemCategoria() {}
@@ -36,6 +37,14 @@ public class ItemCategoria {
 
 	public void setUrgencia(String urgencia) {
 		this.urgencia = urgencia;
+	}
+
+	public String getCategoria() {
+		return Categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		Categoria = categoria;
 	}
 	
 }

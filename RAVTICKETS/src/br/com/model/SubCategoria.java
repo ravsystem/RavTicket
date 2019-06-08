@@ -8,17 +8,18 @@ import javax.persistence.Id;
 public class SubCategoria {
 	
 	@Id @GeneratedValue
-	private Long in;
+	private Long id;
 	private String descr;
+	private String Categoria;
 	
 	public SubCategoria() {}
 
 	public Long getIn() {
-		return in;
+		return id;
 	}
 
 	public void setIn(Long in) {
-		this.in = in;
+		this.id = in;
 	}
 
 	public String getDescr() {
@@ -27,6 +28,14 @@ public class SubCategoria {
 
 	public void setDescr(String descr) {
 		this.descr = descr;
+	}
+
+	public String getCategoria() {
+		return Categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		Categoria = categoria;
 	}
 	
 }

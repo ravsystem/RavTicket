@@ -20,6 +20,7 @@ public class Ticket {
 	private String descr_problema;
 	private String o_que_foi_feito;
 	private String resolucao;
+	private String nivel;
 	
 	public Ticket() {}
 	
@@ -117,6 +118,14 @@ public class Ticket {
 
 	public void setResolucao(String resolucao) {
 		this.resolucao = resolucao;
+	}
+
+	public String getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
 	}
 
 }

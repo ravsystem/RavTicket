@@ -5,62 +5,64 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-public class AgenteTableModel extends AbstractTableModel{
-	
-	private List<Agente> linhasAgentes;
+public class ClienteTableModel extends AbstractTableModel{
+
+	private List<Cliente> linhasClientes;
 	private String[] colunas;
 	
-	public AgenteTableModel(List<Agente> agents) {
+	public ClienteTableModel(List<Cliente> clients) {
 		
-		this.linhasAgentes = new ArrayList<Agente>(agents);
+		this.linhasClientes = new ArrayList<Cliente>(clients);
 	}
 	
 	public int getRowCount() {
 		 //Quantidade de linhas da tabela, aqui as linhas vão ser do tamanho da lista(List).
-        return linhasAgentes.size();
+        return linhasClientes.size();
     }
 	
     public int getColumnCount() {
     	//Quantidade de Colunas da tabela, no caso aqui são 4.
-        return 3;
+        return 4;
     }
     
     public String getColumnName(int columnIndex) {
     	 //Nome das colunas da JTable
-        String colunas[] = {"Codigo", "Nome", "Tipo"};
+        String colunas[] = {"Codigo", "N. Fantasia", "Fone", "Data do Cadastro"};
         return colunas[columnIndex];
     }
     
     public Object getValueAt(int row, int column) {
     	//Retornar o valor da coluna column e da linha row da JTable.
-        Agente agent = linhasAgentes.get(row);
-        if (column == 0) return agent.getId();
-        else if (column == 1) return agent.getNome();
-        else return agent.getTipo();
+        Cliente client = linhasClientes.get(row);
+        if (column == 0) return client.getId();
+        else if (column == 1) return client.getFantasia();
+        else if (column == 2) return client.getTelefone();
+        else return client.getData_cadastro();
     }
     
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        // Pega o registro referente a linha especificada.
-    	Agente agent = linhasAgentes.get(rowIndex);
+        // Pega o sócio referente a linha especificada.
+    	Cliente client = linhasClientes.get(rowIndex);
      
-    	if (columnIndex == 0) agent.setId((Long)aValue);
-        else if (columnIndex == 1) agent.setNome((String)aValue);
-        else if (columnIndex == 2) agent.setTipo((String)aValue);
+    	if (columnIndex == 0) client.setId((Long)aValue);
+        else if (columnIndex == 1) client.setFantasia((String)aValue);
+        else if (columnIndex == 2) client.setTelefone((String)aValue);
+        else if (columnIndex == 2) client.setData_cadastro((String)aValue);
         else throw new IndexOutOfBoundsException("columnIndex out of bounds");
         	
         fireTableCellUpdated(rowIndex, columnIndex); // Notifica a atualização da célula
     }
 
  // Retorna o sócio referente a linha especificada
-    public Agente getAgente(int indiceLinha) {
-        return linhasAgentes.get(indiceLinha);
+    public Cliente getcliente(int indiceLinha) {
+        return linhasClientes.get(indiceLinha);
     }
      
     // Adiciona o sócio especificado ao modelo
-    public void addAgente(Agente agente) {
+    public void addCliente(Cliente cliente) {
         // Adiciona o registro.
-    	linhasAgentes.add(agente);
+    	linhasClientes.add(cliente);
      
         // Pega a quantidade de registros e subtrai 1 para
         // achar o último índice. A subtração é necessária
@@ -72,34 +74,34 @@ public class AgenteTableModel extends AbstractTableModel{
     }
      
     // Remove o sócio da linha especificada.
-    public void removeAgente(int indiceLinha) {
+    public void removeCliente(int indiceLinha) {
         // Remove o registro.
-    	linhasAgentes.remove(indiceLinha);
+    	linhasClientes.remove(indiceLinha);
      
         // Notifica a mudança.
         fireTableRowsDeleted(indiceLinha, indiceLinha);
     }
      
     // Adiciona uma lista de sócios no final da lista.
-    public void addListaDeAgentes(List<Agente> agentes) {
+    public void addListaDeClientes(List<Cliente> clientes) {
         // Pega o tamanho antigo da tabela, que servirá
         // como índice para o primeiro dos novos registros
         int indice = getRowCount();
      
         // Adiciona os registros.
-        linhasAgentes.addAll(agentes);
+        linhasClientes.addAll(clientes);
      
         // Notifica a mudança.
-        fireTableRowsInserted(indice, indice + agentes.size());
+        fireTableRowsInserted(indice, indice + clientes.size());
     }
      
     // Remove todos os registros.
     public void limpar() {
         // Remove todos os elementos da lista de sócios.
-    	linhasAgentes.clear();
+    	linhasClientes.clear();
      
         // Notifica a mudança.
         fireTableDataChanged();
     }
-
+	
 }
