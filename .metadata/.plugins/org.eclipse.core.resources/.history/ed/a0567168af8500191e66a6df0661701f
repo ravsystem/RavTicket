@@ -1,0 +1,33 @@
+package br.com.window;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+
+public class Listar_tickets extends JInternalFrame {
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Listar_tickets frame = new Listar_tickets();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Listar_tickets() {
+		setBounds(100, 100, 450, 300);
+
+	}
+
+}

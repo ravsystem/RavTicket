@@ -1,0 +1,17 @@
+package br.com.model;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
+import javax.swing.JComponent;
+
+public class Carregador {
+	
+	Image img = new ImageIcon(getClass().getResource("/imagens/principal/pvGrande.png")).getImage();
+    public void paintChildren(Graphics g){
+        g.drawImage(img, 0, 0, getWidth() , height, observer)
+        super.paintChildren(g);
+    }
+
+}

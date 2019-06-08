@@ -1,0 +1,10 @@
+package br.com.model;
+
+public class Nivel1 extends Agente {
+
+	@Override
+	public void TipoAgente() {
+		
+	}
+
+}

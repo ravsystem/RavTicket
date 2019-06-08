@@ -1,0 +1,16 @@
+package br.com.model;
+
+public class Nivel1 extends Agente {
+
+	public Nivel1(Long id, String nome, String senha, String tipo) {
+		super(id, nome, senha, tipo);
+	}
+	
+	public Nivel1() {}
+
+	@Override
+	public void TipoAgente() {
+		
+	}
+
+}

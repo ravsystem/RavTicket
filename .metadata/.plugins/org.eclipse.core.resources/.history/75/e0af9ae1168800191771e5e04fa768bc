@@ -1,0 +1,142 @@
+package br.com.window.tickts;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextField;
+
+public class Novo_ticket extends JInternalFrame {
+	private JTextField textField;
+	private JTextField textField_1;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Novo_ticket frame = new Novo_ticket();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Novo_ticket() {
+		setBounds(100, 100, 950, 670);
+		
+		JLabel lblAdicionarNovoTicket = new JLabel("Adicionar novo Ticket");
+		lblAdicionarNovoTicket.setFont(new Font("SansSerif", Font.BOLD, 45));
+		
+		JLabel lblCliente = new JLabel("Cliente.:");
+		lblCliente.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		
+		JLabel lblNewLabel = new JLabel("Categoria.:");
+		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		
+		JLabel lblSubcategoria = new JLabel("SubCategoria.:");
+		lblSubcategoria.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		
+		JLabel lblItemDeCategoria = new JLabel("Item de Categoria.:");
+		lblItemDeCategoria.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		
+		JLabel lblUrgncia = new JLabel("Urg\u00EAncia.:");
+		lblUrgncia.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JComboBox comboBox_4 = new JComboBox();
+		comboBox_4.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		
+		JLabel lblStatus = new JLabel("Status.:");
+		lblStatus.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		textField = new JTextField();
+		textField.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		textField.setColumns(10);
+		
+		JLabel lblAgente = new JLabel("Agente.:");
+		lblAgente.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		textField_1.setColumns(10);
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblAdicionarNovoTicket, GroupLayout.PREFERRED_SIZE, 493, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCliente, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblSubcategoria)
+						.addComponent(lblItemDeCategoria)
+						.addComponent(lblUrgncia)
+						.addComponent(lblStatus)
+						.addComponent(lblAgente)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(textField_1, Alignment.LEADING)
+							.addComponent(textField, Alignment.LEADING)
+							.addComponent(comboBox_4, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(comboBox_3, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(comboBox_2, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(comboBox_1, Alignment.LEADING, 0, 308, Short.MAX_VALUE))))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(11)
+					.addComponent(lblAdicionarNovoTicket, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addGap(25)
+					.addComponent(lblCliente)
+					.addGap(11)
+					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(lblNewLabel)
+					.addGap(11)
+					.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(lblSubcategoria)
+					.addGap(11)
+					.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(lblItemDeCategoria)
+					.addGap(11)
+					.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(lblUrgncia)
+					.addGap(11)
+					.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(lblStatus)
+					.addGap(11)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(lblAgente)
+					.addGap(11)
+					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(20))
+		);
+		getContentPane().setLayout(groupLayout);
+
+	}
+
+}

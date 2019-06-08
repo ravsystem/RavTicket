@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import br.com.connection.Conexao;
+import br.com.window.agente.NovoAgente;
 import br.com.window.agente.Novo_agente;
 import br.com.window.categoria.Nova_SubCategoria;
 import br.com.window.categoria.Nova_categoria;
@@ -53,7 +54,6 @@ public class Main_principal extends JFrame {
 				try {
 					Main_principal frame = new Main_principal();
 					frame.setUndecorated(true);
-					frame.setAlwaysOnTop(true);
 					frame.setResizable(false);
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
@@ -70,10 +70,10 @@ public class Main_principal extends JFrame {
 		Conexao.iniciarFabrica();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, Integer.valueOf((int) tk.getWidth()) , Integer.valueOf((int) tk.getHeight()));
+		setBounds(100, 100, Integer.valueOf((int) tk.getWidth()), Integer.valueOf((int) tk.getHeight()));
 		
-		desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, Integer.valueOf((int) tk.getWidth()), Integer.valueOf((int) tk.getHeight()));
+		//desktopPane = new JDesktopPane();
+		//desktopPane.setBounds(0, 0, Integer.valueOf((int) tk.getWidth()), Integer.valueOf((int) tk.getHeight()));
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.desktop);
@@ -216,12 +216,12 @@ public class Main_principal extends JFrame {
 		mntmNovo_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Novo_agente novo_agente = new Novo_agente();
-				desktopPane.add(novo_agente);
-				contentPane.add(desktopPane);
+				NovoAgente novo_agente = new NovoAgente();
 				novo_agente.setResizable(false);
-				centralizaForm(novo_agente);
-				novo_agente.show();
+				novo_agente.setUndecorated(true);
+				novo_agente.setLocationRelativeTo(null);
+				novo_agente.setAlwaysOnTop(true);
+				novo_agente.setVisible(true);
 				
 			}
 		});

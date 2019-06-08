@@ -1,0 +1,19 @@
+package br.com.window.principal;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
+import javax.swing.JComponent;
+
+@SuppressWarnings("serial")
+public class Carregador extends JDesktopPane{
+	
+	Image img = new ImageIcon(getClass().getResource("/br/com/img/gray.png")).getImage();
+	@Override
+    public void paintChildren(Graphics g){
+        g.drawImage(img, 0, 0, getWidth() , getHeight(), this);
+        super.paintChildren(g);
+    }
+
+}

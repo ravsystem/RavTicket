@@ -1,0 +1,31 @@
+package br.com.window.agente;
+
+import javax.swing.JInternalFrame;
+
+public class JFrame extends JInternalFrame {
+
+	public JFrame() {
+		super();
+	}
+
+	public JFrame(String arg0) {
+		super(arg0);
+	}
+
+	public JFrame(String arg0, boolean arg1) {
+		super(arg0, arg1);
+	}
+
+	public JFrame(String arg0, boolean arg1, boolean arg2) {
+		super(arg0, arg1, arg2);
+	}
+
+	public JFrame(String arg0, boolean arg1, boolean arg2, boolean arg3) {
+		super(arg0, arg1, arg2, arg3);
+	}
+
+	public JFrame(String arg0, boolean arg1, boolean arg2, boolean arg3, boolean arg4) {
+		super(arg0, arg1, arg2, arg3, arg4);
+	}
+
+}

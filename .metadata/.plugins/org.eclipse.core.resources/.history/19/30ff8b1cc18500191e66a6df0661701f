@@ -1,0 +1,70 @@
+package br.com.window.login;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import java.awt.Dialog.ModalExclusionType;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Login extends JFrame {
+
+	private JPanel contentPane;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login frame = new Login();
+					frame.setUndecorated(true);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Login() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/br/com/img/login1.png")));
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setBounds(100, 100, 368, 455);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblX = new JLabel("X");
+		lblX.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				System.exit(0);
+			}
+		});
+		lblX.setHorizontalAlignment(SwingConstants.CENTER);
+		lblX.setForeground(new Color(255, 255, 255));
+		lblX.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblX.setBounds(324, 2, 37, 35);
+		contentPane.add(lblX);
+		
+		JLabel ImagemPrincipal = new JLabel("");
+		ImagemPrincipal.setBounds(-2, 0, 368, 470);
+		ImagemPrincipal.setIcon(new ImageIcon(Login.class.getResource("/br/com/img/login1.png")));
+		contentPane.add(ImagemPrincipal);
+		
+		
+	}
+}

@@ -1,0 +1,258 @@
+package br.com.window.principal;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.Box;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import br.com.connection.Conexao;
+import br.com.window.agente.Novo_agente;
+import br.com.window.categoria.Nova_SubCategoria;
+import br.com.window.categoria.Nova_categoria;
+import br.com.window.cliente.Novo_cliente;
+import br.com.window.login.Login;
+import br.com.window.tickts.Novo_ticket;
+
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.Font;
+import java.awt.Insets;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JDesktopPane;
+import java.awt.Color;
+
+public class Main_principal extends JFrame {
+
+	private JPanel contentPane;
+	private JDesktopPane desktopPane;
+	public Dimension tk = Toolkit.getDefaultToolkit().getScreenSize();
+	
+	 private void centralizaForm(JInternalFrame frame) {
+	        Dimension desktopSize = desktopPane.getSize();
+	        Dimension jInternalFrameSize = frame.getSize();
+	        frame.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+	                (desktopSize.height - jInternalFrameSize.height) / 2);
+	    }
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Main_principal frame = new Main_principal();
+					frame.setUndecorated(true);
+					frame.setAlwaysOnTop(true);
+					frame.setResizable(false);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Main_principal() {
+		
+		Conexao.iniciarFabrica();
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, Integer.valueOf((int) tk.getWidth()) , Integer.valueOf((int) tk.getHeight()));
+		
+		desktopPane = new JDesktopPane();
+		desktopPane.setBounds(0, 0, Integer.valueOf((int) tk.getWidth()), Integer.valueOf((int) tk.getHeight()));
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(SystemColor.desktop);
+		menuBar.setForeground(SystemColor.desktop);
+		menuBar.setMargin(new Insets(0, 10, 0, 0));
+		setJMenuBar(menuBar);
+		
+		JMenu mnTickets = new JMenu("TICKET");
+		mnTickets.setForeground(SystemColor.textHighlightText);
+		mnTickets.setBackground(SystemColor.desktop);
+		mnTickets.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		menuBar.add(mnTickets);
+		
+		JMenuItem mntmNovo = new JMenuItem("Novo");
+		mntmNovo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				
+				Novo_ticket novo_ticket = new Novo_ticket();
+				desktopPane.add(novo_ticket);
+				contentPane.add(desktopPane);
+				novo_ticket.setResizable(false);
+				centralizaForm(novo_ticket);
+				novo_ticket.show();
+			}
+		});
+		mnTickets.add(mntmNovo);
+		
+		JMenuItem mntmListar = new JMenuItem("Listar");
+		mnTickets.add(mntmListar);
+		
+		JMenuItem mntmBuscar = new JMenuItem("Buscar");
+		mnTickets.add(mntmBuscar);
+		
+		menuBar.add(Box.createGlue());
+		
+		JMenu mnClientes = new JMenu("CLIENTE");
+		mnClientes.setForeground(SystemColor.textHighlightText);
+		mnClientes.setBackground(SystemColor.desktop);
+		mnClientes.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		menuBar.add(mnClientes);
+		
+		JMenuItem mntmNovo_1 = new JMenuItem("Novo");
+		mntmNovo_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Novo_cliente novo_cliente = new Novo_cliente();
+				desktopPane.add(novo_cliente);
+				contentPane.add(desktopPane);
+				novo_cliente.setResizable(false);
+				centralizaForm(novo_cliente);
+				novo_cliente.show();
+			}
+		});
+		mnClientes.add(mntmNovo_1);
+		
+		Component glue = Box.createGlue();
+		glue.setBackground(SystemColor.desktop);
+		menuBar.add(glue);
+		
+		JMenu mnCategoria = new JMenu("CATEGORIA");
+		mnCategoria.setForeground(Color.WHITE);
+		mnCategoria.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		menuBar.add(mnCategoria);
+		
+		JMenuItem mntmNovo_3 = new JMenuItem("Nova");
+		mntmNovo_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Nova_categoria nova_categoria = new Nova_categoria();
+				desktopPane.add(nova_categoria);
+				contentPane.add(desktopPane);
+				nova_categoria.setResizable(false);
+				centralizaForm(nova_categoria);
+				nova_categoria.show();
+			}
+		});
+		mnCategoria.add(mntmNovo_3);
+		menuBar.add(Box.createGlue());
+		
+		JMenu mnSubcategoria = new JMenu("SUBCATEGORIA");
+		mnSubcategoria.setForeground(Color.WHITE);
+		mnSubcategoria.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		menuBar.add(mnSubcategoria);
+		
+		JMenuItem mntmNova = new JMenuItem("Nova");
+		mntmNova.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Nova_SubCategoria nova_subcategoria = new Nova_SubCategoria();
+				desktopPane.add(nova_subcategoria);
+				contentPane.add(desktopPane);
+				nova_subcategoria.setResizable(false);
+				centralizaForm(nova_subcategoria);
+				nova_subcategoria.show();
+			}
+		});
+		mnSubcategoria.add(mntmNova);
+		menuBar.add(Box.createGlue());
+		
+		JMenu mnItemCategoria = new JMenu("ITEM CATEGORIA");
+		mnItemCategoria.setForeground(Color.WHITE);
+		mnItemCategoria.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		menuBar.add(mnItemCategoria);
+		
+		JMenuItem mntmNova_1 = new JMenuItem("Nova");
+		mnItemCategoria.add(mntmNova_1);
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		menuBar.add(Box.createGlue());
+		
+		JMenu mnAgentes = new JMenu("AGENTE");
+		mnAgentes.setForeground(SystemColor.textHighlightText);
+		mnAgentes.setFont(new Font("Segoe UI Black", Font.PLAIN, 30));
+		menuBar.add(mnAgentes);
+		
+		JMenuItem mntmNovo_2 = new JMenuItem("Novo");
+		mntmNovo_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Novo_agente novo_agente = new Novo_agente();
+				desktopPane.add(novo_agente);
+				contentPane.add(desktopPane);
+				novo_agente.setResizable(false);
+				centralizaForm(novo_agente);
+				novo_agente.show();
+				
+			}
+		});
+		mnAgentes.add(mntmNovo_2);
+		
+		menuBar.add(Box.createGlue());
+		
+		JMenu menu = new JMenu("-");
+		menu.setForeground(SystemColor.textHighlightText);
+		menu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				setExtendedState(ICONIFIED);
+			}
+		});
+		menu.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		menuBar.add(menu);
+		
+		//menuBar.add(Box.createGlue());
+		
+		JMenu mnX = new JMenu("X");
+		mnX.setForeground(SystemColor.textHighlightText);
+		mnX.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				Main_principal.this.dispose();
+				Login novoLogin = new Login();
+				novoLogin.setUndecorated(true);
+				novoLogin.setLocationRelativeTo(null);
+				novoLogin.setVisible(true);
+			}
+		});
+		mnX.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		menuBar.add(mnX);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		
+		
+	}
+}

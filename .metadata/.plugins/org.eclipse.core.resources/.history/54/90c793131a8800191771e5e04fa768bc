@@ -1,0 +1,9 @@
+package br.com.model;
+
+@Entity
+public class SubCategoria {
+	
+	private Long in;
+	private String descr;
+
+}

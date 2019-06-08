@@ -1,0 +1,246 @@
+package br.com.window.categoria;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.TitledBorder;
+import javax.transaction.Transactional.TxType;
+
+import br.com.connection.Conexao;
+import br.com.model.Categoria;
+import br.com.model.CategoriaTableModel;
+import br.com.model.ItemCategoria;
+import br.com.model.ItemCategoriaTableModel;
+import br.com.model.SubCategoria;
+import br.com.window.agente.Novo_agente;
+
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.event.ActionEvent;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Novo_itemCategoria extends JInternalFrame {
+	private JTextField txtNome;
+	private JTable tableItemCateg;
+	private static int auxline;
+	private JTextField txtId;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Novo_itemCategoria frame = new Novo_itemCategoria();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Novo_itemCategoria() {
+		setBounds(100, 100, 850, 460);
+		
+		List<SubCategoria> sbcategs = Conexao.listarSubCateg();
+		String[] tp_test = new String[sbcategs.size()];
+		for(int i = 0; i < sbcategs.size(); i++) {
+			tp_test[i] = sbcategs.get(i).getDescr();
+		}
+		
+		List<ItemCategoria> Itemcategs = Conexao.listarItemCateg();
+		
+		ArrayList dados = new ArrayList();
+		
+		for(int i = 0; i < Itemcategs.size(); i++) {
+			
+			ItemCategoria Itemcateg = new ItemCategoria();
+			Itemcateg.setId(Itemcategs.get(i).getId());
+			Itemcateg.setNome(Itemcategs.get(i).getNome());
+			dados.add(Itemcateg);
+		}
+		
+		ItemCategoriaTableModel modelo = new ItemCategoriaTableModel(dados);
+		
+		JLabel lblCadastroDeItemcategoria = new JLabel("Cadastro de ItemCategoria");
+		lblCadastroDeItemcategoria.setBounds(6, 6, 609, 67);
+		lblCadastroDeItemcategoria.setFont(new Font("SansSerif", Font.BOLD, 45));
+		
+		JLabel lblNome = new JLabel("Nome.:");
+		lblNome.setBounds(6, 89, 130, 24);
+		lblNome.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JLabel lblSubcategoria = new JLabel("SubCategoria.:");
+		lblSubcategoria.setBounds(6, 133, 130, 24);
+		lblSubcategoria.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		txtNome = new JTextField();
+		txtNome.setBounds(148, 85, 294, 33);
+		txtNome.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		txtNome.setColumns(10);
+		
+		JComboBox cbSubCateg = new JComboBox(tp_test);
+		cbSubCateg.setBounds(148, 130, 294, 31);
+		cbSubCateg.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		getContentPane().setLayout(null);
+		getContentPane().add(lblCadastroDeItemcategoria);
+		getContentPane().add(lblNome);
+		getContentPane().add(lblSubcategoria);
+		getContentPane().add(txtNome);
+		getContentPane().add(cbSubCateg);
+		
+		tableItemCateg = new JTable();
+		
+		tableItemCateg = new JTable();
+
+		tableItemCateg.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tableItemCateg.setShowVerticalLines(true);
+		tableItemCateg.setShowHorizontalLines(true);
+		tableItemCateg.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		tableItemCateg.setToolTipText("");
+		tableItemCateg.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		
+		tableItemCateg.setModel(modelo);
+		tableItemCateg.getColumnModel().getColumn(0).setPreferredWidth(10);
+		tableItemCateg.getColumnModel().getColumn(0).setResizable(false);
+		tableItemCateg.getColumnModel().getColumn(1).setPreferredWidth(270);
+		tableItemCateg.getColumnModel().getColumn(1).setResizable(false);
+		
+		tableItemCateg.setBounds(508, 95, 156, 328);
+		
+		JScrollPane scrollPane = new JScrollPane(tableItemCateg);
+		scrollPane.setBounds(454, 89, 378, 334);
+		getContentPane().add(scrollPane);
+		
+		JButton btnNewButton = new JButton("Salvar");
+		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNewButton.setBounds(6, 395, 90, 28);
+		getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Limpar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txtNome.setText("");
+				cbSubCateg.setSelectedIndex(0);
+			}
+		});
+		btnNewButton_1.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNewButton_1.setBounds(108, 395, 99, 28);
+		getContentPane().add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Atualizar");
+		btnNewButton_2.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNewButton_2.setBounds(219, 395, 120, 28);
+		getContentPane().add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Voltar");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Novo_itemCategoria.this.dispose();
+			}
+		});
+		btnNewButton_3.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNewButton_3.setBounds(351, 395, 90, 28);
+		getContentPane().add(btnNewButton_3);
+		
+		ImageIcon iconEdit = new ImageIcon(Novo_agente.class.getResource("/br/com/img/edit.png"));
+		Image imaEdit = iconEdit.getImage();
+		Image imagemEdit = imaEdit.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+		Icon icoEdit = new ImageIcon(imagemEdit);
+		
+		JButton button = new JButton(icoEdit);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ItemCategoria itemcategoria = new ItemCategoria();
+				
+				auxline = tableItemCateg.getSelectedRow();
+				String id = tableItemCateg.getValueAt(auxline, 0).toString();
+				
+				Long idaux = Long.valueOf(id);
+				
+				itemcategoria = Conexao.selecionaItemCategoria(idaux);
+				
+				txtNome.setText(String.valueOf(itemcategoria.getNome()));
+				txtId.setText(String.valueOf(itemcategoria.getId()));
+			}
+		});
+		button.setBounds(790, 44, 42, 33);
+		getContentPane().add(button);
+		
+		ImageIcon iconRe = new ImageIcon(Novo_agente.class.getResource("/br/com/img/delete.png"));
+		Image imaRe = iconRe.getImage();
+		Image imagemRe = imaRe.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+		Icon icoRe = new ImageIcon(imagemRe);
+		
+		JButton button_1 = new JButton(icoRe);
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ItemCategoria subcategoria = new ItemCategoria();
+				
+				auxline = tableItemCateg.getSelectedRow();
+				String id = tableItemCateg.getValueAt(auxline, 0).toString();
+				
+				Long idaux = Long.valueOf(id);
+				
+				subcategoria = Conexao.selecionaItemCategoria(idaux);
+				
+				Conexao.removeItemCategoria(subcategoria);
+				
+				modelo.removeItemCategoria(auxline);
+			}
+		});
+		button_1.setBounds(736, 44, 42, 33);
+		getContentPane().add(button_1);
+		
+		JLabel label = new JLabel((Icon) null);
+		label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				Novo_itemCategoria.this.dispose();
+			}
+		});
+		label.setBounds(790, 6, 42, 25);
+		getContentPane().add(label);
+		
+		txtId = new JTextField();
+		txtId.setEnabled(false);
+		txtId.setEditable(false);
+		txtId.setBounds(675, 45, 49, 28);
+		getContentPane().add(txtId);
+		txtId.setColumns(10);
+		
+		ImageIcon iconB = new ImageIcon(Novo_agente.class.getResource("/br/com/img/back.png"));
+		Image imaB = iconB.getImage();
+		Image imagemB = imaB.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+		Icon icoB = new ImageIcon(imagemB);
+		
+		JLabel label_1 = new JLabel(icoB);
+		label_1.setBounds(790, 6, 42, 25);
+		getContentPane().add(label_1);
+
+	}
+}

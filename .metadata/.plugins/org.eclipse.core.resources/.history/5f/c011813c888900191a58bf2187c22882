@@ -1,0 +1,112 @@
+package br.com.window.categoria;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.transaction.Transactional.TxType;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Novo_itemCategoria extends JInternalFrame {
+	private JTextField txtNome;
+	private JTable tableItemCateg;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Novo_itemCategoria frame = new Novo_itemCategoria();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Novo_itemCategoria() {
+		setBounds(100, 100, 850, 460);
+		
+		JLabel lblCadastroDeItemcategoria = new JLabel("Cadastro de ItemCategoria");
+		lblCadastroDeItemcategoria.setBounds(6, 6, 609, 67);
+		lblCadastroDeItemcategoria.setFont(new Font("SansSerif", Font.BOLD, 45));
+		
+		JLabel lblNome = new JLabel("Nome.:");
+		lblNome.setBounds(6, 89, 130, 24);
+		lblNome.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JLabel lblSubcategoria = new JLabel("SubCategoria.:");
+		lblSubcategoria.setBounds(6, 133, 130, 24);
+		lblSubcategoria.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		txtNome = new JTextField();
+		txtNome.setBounds(148, 85, 294, 33);
+		txtNome.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		txtNome.setColumns(10);
+		
+		JComboBox cbSubCateg = new JComboBox();
+		cbSubCateg.setBounds(148, 130, 294, 31);
+		cbSubCateg.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		getContentPane().setLayout(null);
+		getContentPane().add(lblCadastroDeItemcategoria);
+		getContentPane().add(lblNome);
+		getContentPane().add(lblSubcategoria);
+		getContentPane().add(txtNome);
+		getContentPane().add(cbSubCateg);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(676, 89, 156, 334);
+		getContentPane().add(scrollPane);
+		
+		tableItemCateg = new JTable();
+		tableItemCateg.setBounds(508, 95, 156, 328);
+		getContentPane().add(tableItemCateg);
+		
+		JButton btnNewButton = new JButton("Salvar");
+		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNewButton.setBounds(6, 395, 90, 28);
+		getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Limpar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txtNome.setText("");
+				cbSubCateg.setSelectedIndex(0);
+			}
+		});
+		btnNewButton_1.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNewButton_1.setBounds(108, 395, 99, 28);
+		getContentPane().add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Atualizar");
+		btnNewButton_2.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNewButton_2.setBounds(219, 395, 120, 28);
+		getContentPane().add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Voltar");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Novo_itemCategoria.this.dispose();
+			}
+		});
+		btnNewButton_3.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNewButton_3.setBounds(351, 395, 90, 28);
+		getContentPane().add(btnNewButton_3);
+
+	}
+}

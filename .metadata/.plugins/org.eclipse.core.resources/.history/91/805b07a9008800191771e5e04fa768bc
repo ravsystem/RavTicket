@@ -1,0 +1,14 @@
+package br.com.window.agente;
+
+import javax.swing.JPanel;
+
+public class Teste extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public Teste() {
+
+	}
+
+}

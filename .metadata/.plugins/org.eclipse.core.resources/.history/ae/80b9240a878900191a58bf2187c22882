@@ -1,0 +1,64 @@
+package br.com.window.categoria;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+
+public class Novo_itemCategoria extends JInternalFrame {
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Novo_itemCategoria frame = new Novo_itemCategoria();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Novo_itemCategoria() {
+		setBounds(100, 100, 850, 460);
+		
+		JLabel lblCadastroDeItemcategoria = new JLabel("Cadastro de ItemCategoria");
+		lblCadastroDeItemcategoria.setBounds(6, 6, 609, 67);
+		lblCadastroDeItemcategoria.setFont(new Font("SansSerif", Font.BOLD, 45));
+		
+		JLabel lblNome = new JLabel("Nome.:");
+		lblNome.setBounds(6, 89, 130, 24);
+		lblNome.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JLabel lblSubcategoria = new JLabel("SubCategoria.:");
+		lblSubcategoria.setBounds(6, 133, 130, 24);
+		lblSubcategoria.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		textField = new JTextField();
+		textField.setBounds(148, 85, 142, 33);
+		textField.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		textField.setColumns(10);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(148, 130, 142, 31);
+		comboBox.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		getContentPane().setLayout(null);
+		getContentPane().add(lblCadastroDeItemcategoria);
+		getContentPane().add(lblNome);
+		getContentPane().add(lblSubcategoria);
+		getContentPane().add(textField);
+		getContentPane().add(comboBox);
+
+	}
+}

@@ -1,0 +1,215 @@
+package br.com.window.tickts;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextField;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Novo_ticket extends JInternalFrame {
+	private JTextField textField;
+	private JTextField textField_2;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Novo_ticket frame = new Novo_ticket();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Novo_ticket() {
+		setBounds(100, 100, 1075, 714);
+		
+		JLabel lblAdicionarNovoTicket = new JLabel("Adicionar novo Ticket");
+		lblAdicionarNovoTicket.setBounds(10, 11, 493, 64);
+		lblAdicionarNovoTicket.setFont(new Font("SansSerif", Font.BOLD, 45));
+		
+		JLabel lblCliente = new JLabel("Cliente.:");
+		lblCliente.setBounds(10, 100, 82, 24);
+		lblCliente.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(10, 136, 308, 31);
+		comboBox.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		
+		JLabel lblNewLabel = new JLabel("Categoria.:");
+		lblNewLabel.setBounds(10, 179, 308, 24);
+		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(10, 214, 308, 31);
+		comboBox_1.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		
+		JLabel lblSubcategoria = new JLabel("SubCategoria.:");
+		lblSubcategoria.setBounds(10, 256, 130, 24);
+		lblSubcategoria.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBounds(10, 291, 308, 31);
+		comboBox_2.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		
+		JLabel lblItemDeCategoria = new JLabel("Item de Categoria.:");
+		lblItemDeCategoria.setBounds(10, 333, 167, 24);
+		lblItemDeCategoria.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setBounds(10, 368, 308, 31);
+		comboBox_3.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		
+		JLabel lblUrgncia = new JLabel("Urg\u00EAncia.:");
+		lblUrgncia.setBounds(10, 410, 90, 24);
+		lblUrgncia.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JComboBox comboBox_4 = new JComboBox();
+		comboBox_4.setBounds(10, 445, 308, 31);
+		comboBox_4.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		
+		JLabel lblStatus = new JLabel("Status.:");
+		lblStatus.setBounds(10, 487, 67, 24);
+		lblStatus.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		textField = new JTextField();
+		textField.setBounds(10, 522, 308, 33);
+		textField.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		textField.setColumns(10);
+		
+		JLabel lblAgente = new JLabel("Agente.:");
+		lblAgente.setBounds(10, 566, 75, 24);
+		lblAgente.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		JLabel lblTtulo = new JLabel("T\u00EDtulo");
+		lblTtulo.setBounds(371, 100, 60, 24);
+		lblTtulo.setFont(new Font("SansSerif", Font.BOLD, 18));
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(371, 135, 630, 33);
+		textField_2.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		textField_2.setColumns(10);
+		getContentPane().setLayout(null);
+		getContentPane().add(lblAdicionarNovoTicket);
+		getContentPane().add(lblNewLabel);
+		getContentPane().add(lblSubcategoria);
+		getContentPane().add(lblItemDeCategoria);
+		getContentPane().add(lblUrgncia);
+		getContentPane().add(lblStatus);
+		getContentPane().add(lblAgente);
+		getContentPane().add(lblCliente);
+		getContentPane().add(comboBox);
+		getContentPane().add(textField);
+		getContentPane().add(comboBox_4);
+		getContentPane().add(comboBox_3);
+		getContentPane().add(comboBox_2);
+		getContentPane().add(comboBox_1);
+		getContentPane().add(textField_2);
+		getContentPane().add(lblTtulo);
+		
+		JTextArea descricao = new JTextArea();
+		descricao.setBounds(371, 214, 630, 108);
+		descricao.setLineWrap(true);
+		getContentPane().add(descricao);
+		
+		JLabel lblDescricaoDoTicket = new JLabel("Descricao do Ticket");
+		lblDescricaoDoTicket.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblDescricaoDoTicket.setBounds(371, 185, 185, 16);
+		getContentPane().add(lblDescricaoDoTicket);
+		
+		JButton btnNewButton = new JButton("Limpar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				descricao.setText("");
+			}
+		});
+		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNewButton.setBounds(911, 177, 90, 28);
+		getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Salvar");
+		btnNewButton_1.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNewButton_1.setBounds(967, 649, 90, 28);
+		getContentPane().add(btnNewButton_1);
+		
+		JTextArea o_que_foi_feito = new JTextArea();
+		o_que_foi_feito.setLineWrap(true);
+		o_que_foi_feito.setBounds(371, 368, 630, 108);
+		getContentPane().add(o_que_foi_feito);
+		
+		JLabel lblOQueFoi = new JLabel("O que foi feito?");
+		lblOQueFoi.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblOQueFoi.setBounds(371, 339, 185, 16);
+		getContentPane().add(lblOQueFoi);
+		
+		JTextArea resolucao = new JTextArea();
+		resolucao.setLineWrap(true);
+		resolucao.setBounds(371, 522, 630, 108);
+		getContentPane().add(resolucao);
+		
+		JLabel lblResoluo = new JLabel("Resolu\u00E7\u00E3o");
+		lblResoluo.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblResoluo.setBounds(371, 493, 185, 16);
+		getContentPane().add(lblResoluo);
+		
+		JButton button = new JButton("Limpar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				o_que_foi_feito.setText("");
+			}
+		});
+		button.setFont(new Font("SansSerif", Font.BOLD, 18));
+		button.setBounds(911, 333, 90, 28);
+		getContentPane().add(button);
+		
+		JButton button_1 = new JButton("Limpar");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				resolucao.setText("");
+			}
+		});
+		button_1.setFont(new Font("SansSerif", Font.BOLD, 18));
+		button_1.setBounds(911, 487, 90, 28);
+		getContentPane().add(button_1);
+		
+		JComboBox comboBox_5 = new JComboBox();
+		comboBox_5.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		comboBox_5.setBounds(112, 599, 206, 31);
+		getContentPane().add(comboBox_5);
+		
+		JComboBox comboBox_6 = new JComboBox();
+		comboBox_6.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		comboBox_6.setBounds(10, 599, 90, 31);
+		getContentPane().add(comboBox_6);
+		
+		JLabel lblX = new JLabel("X");
+		lblX.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				Novo_ticket.this.dispose();
+			}
+		});
+		lblX.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		lblX.setBounds(1029, 0, 34, 39);
+		getContentPane().add(lblX);
+
+	}
+}

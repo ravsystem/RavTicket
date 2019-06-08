@@ -3,7 +3,6 @@ package br.com.window.agente;
 import java.awt.Component;
 import java.awt.EventQueue;
 
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -29,10 +28,12 @@ import br.com.model.AgenteTableModel;
 import br.com.model.Cliente;
 import br.com.model.Nivel1;
 import br.com.model.Nivel2;
+import br.com.window.principal.Main_principal;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -49,7 +50,7 @@ public class Novo_agente extends JInternalFrame {
 	private JTextField txtId;
 	private static int auxline;
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -57,6 +58,24 @@ public class Novo_agente extends JInternalFrame {
 					frame.setVisible(true);
 					frame.getDesktopIcon().removeMouseMotionListener(frame.getDesktopIcon().getMouseMotionListeners()[0]);
 
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}*/
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Main_principal frame = new Main_principal();
+					frame.setUndecorated(true);
+					frame.setAlwaysOnTop(true);
+					frame.setResizable(false);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -131,8 +150,74 @@ public class Novo_agente extends JInternalFrame {
 					
 					Conexao.guardar(agente);
 					
+<<<<<<< Updated upstream
 					}catch(Exception io) {
 						JOptionPane.showMessageDialog(null, "Erro ao Gravar.:");
+=======
+					if(tipo.equals("ADM")) {
+						Agente agente = new Agente();
+						agente.setNome(usuario);
+						agente.setSenha(senha);
+						agente.setTipo(tipo);
+						
+						try {
+						
+						Conexao.guardar(agente);
+						
+						}catch(NullPointerException f) {
+							JOptionPane.showMessageDialog(null,"Ops.. Deve ter faltado preencher algo ai moral: \n" +f);
+						}
+						catch(Exception npe){
+							JOptionPane.showMessageDialog(null, "Ops.. Erro ao gravar Agente: \n" +npe);
+						}
+						
+						modelo.addAgente(agente);
+						table.getModel();
+						
+						JOptionPane.showMessageDialog(null, "Usuário Salvo com Sucesso!");
+						
+					}else if(tipo.equals("N2")) {
+						Agente n2 = new Agente();
+						n2.setNome(usuario);
+						n2.setSenha(senha);
+						n2.setTipo(tipo);
+						
+						try {
+						
+							Conexao.guardar(n2);
+						
+						
+						}catch(NullPointerException f) {
+							JOptionPane.showMessageDialog(null,"Ops.. Deve ter faltado preencher algo ai moral: \n" +f);
+						}
+						catch(Exception npe){
+							JOptionPane.showMessageDialog(null, "Ops.. Erro ao gravar Agente: \n" +npe);
+						}
+						
+						modelo.addAgente(n2);
+						table.getModel();
+						
+						JOptionPane.showMessageDialog(null, "Usuário Salvo com Sucesso!");
+					}else {
+						
+						Agente n1 = new Agente();
+						n1.setNome(usuario);
+						n1.setSenha(senha);
+						n1.setTipo(tipo);
+						
+						try {
+							Conexao.guardar(n1);
+						
+						}catch(NullPointerException f) {
+							JOptionPane.showMessageDialog(null,"Ops.. Deve ter faltado preencher algo ai moral: \n" +f);
+						}
+						catch(Exception npe){
+							JOptionPane.showMessageDialog(null, "Ops.. Erro ao gravar Agente: \n" +npe);
+						}
+						
+						modelo.addAgente(n1);
+						table.getModel();
+>>>>>>> Stashed changes
 					}
 					
 					modelo.addAgente(agente);

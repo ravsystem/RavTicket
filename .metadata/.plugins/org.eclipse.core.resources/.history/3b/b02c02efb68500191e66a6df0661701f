@@ -1,0 +1,24 @@
+package br.com.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Nivel1 extends Agente {
+
+	@Id	@GeneratedValue
+	private Long id;
+	
+	public Nivel1(Long id, String nome, String senha, String tipo) {
+		super(nome, senha, tipo);
+	}
+	
+	public Nivel1() {}
+
+	@Override
+	public void TipoAgente() {
+		
+	}
+
+}

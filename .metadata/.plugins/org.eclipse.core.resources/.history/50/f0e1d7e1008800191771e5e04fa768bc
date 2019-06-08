@@ -1,0 +1,71 @@
+package br.com.window.agente;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+
+public class Teste extends JPanel {
+	private JTextField textField;
+	private JTextField textField_1;
+	
+	public Teste() {
+		setLayout(null);
+		
+		JLabel lblCadastroDeAgente = new JLabel("Cadastro de Agente");
+		lblCadastroDeAgente.setBounds(10, 11, 484, 86);
+		lblCadastroDeAgente.setFont(new Font("SansSerif", Font.BOLD, 50));
+		add(lblCadastroDeAgente);
+		
+		JLabel lblNome = new JLabel("Nome.:");
+		lblNome.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblNome.setBounds(10, 145, 78, 14);
+		add(lblNome);
+		
+		JLabel lblSenha = new JLabel("Senha.:");
+		lblSenha.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblSenha.setBounds(10, 186, 78, 14);
+		add(lblSenha);
+		
+		JLabel lblTipo = new JLabel("Tipo.:");
+		lblTipo.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblTipo.setBounds(10, 224, 78, 21);
+		add(lblTipo);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		textField.setBounds(98, 136, 256, 30);
+		add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		textField_1.setBounds(98, 177, 256, 30);
+		add(textField_1);
+		textField_1.setColumns(10);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		comboBox.setBounds(98, 218, 128, 30);
+		add(comboBox);
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setFont(new Font("SansSerif", Font.BOLD, 16));
+		btnSalvar.setBounds(10, 386, 89, 23);
+		add(btnSalvar);
+		
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.setFont(new Font("SansSerif", Font.BOLD, 16));
+		btnLimpar.setBounds(109, 386, 89, 23);
+		add(btnLimpar);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setFont(new Font("SansSerif", Font.BOLD, 16));
+		btnVoltar.setBounds(208, 386, 89, 23);
+		add(btnVoltar);
+
+	}
+
+}

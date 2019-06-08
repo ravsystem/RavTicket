@@ -1,0 +1,46 @@
+package br.com.window.cliente;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Novo_cliente extends JInternalFrame {
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Novo_cliente frame = new Novo_cliente();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Novo_cliente() {
+		setBounds(100, 100, 950, 460);
+		getContentPane().setLayout(null);
+		
+		JLabel lblX = new JLabel(" X");
+		lblX.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				Novo_cliente.this.dispose();
+			}
+		});
+		lblX.setFont(new Font("Segoe UI Black", Font.BOLD, 30));
+		lblX.setBounds(895, 0, 39, 39);
+		getContentPane().add(lblX);
+		
+		
+
+	}
+
+}

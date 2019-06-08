@@ -1,0 +1,40 @@
+package br.com.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+public abstract class Agente {
+	
+	private String nome;
+	private String senha;
+	private String tipo;
+	
+	public Agente(String nome, String senha, String tipo) {
+		
+		this.nome = nome;
+		this.senha = senha;
+		this.tipo = tipo;
+	}
+	
+	public Agente() {}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+	
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	public abstract void TipoAgente();
+	
+}

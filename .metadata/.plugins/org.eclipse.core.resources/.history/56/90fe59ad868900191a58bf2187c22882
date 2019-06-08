@@ -1,0 +1,30 @@
+package br.com.window.categoria;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+
+public class Novo_itemCategoria extends JInternalFrame {
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Novo_itemCategoria frame = new Novo_itemCategoria();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Novo_itemCategoria() {
+		setBounds(100, 100, 850, 460);
+
+	}
+
+}

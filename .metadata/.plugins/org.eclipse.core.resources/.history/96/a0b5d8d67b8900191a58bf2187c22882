@@ -1,0 +1,29 @@
+package br.com.window.categoria;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+
+public class Nova_categoria extends JInternalFrame {
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Nova_categoria frame = new Nova_categoria();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public Nova_categoria() {
+		setBounds(100, 100, 950, 460);
+		
+		
+
+	}
+
+}
