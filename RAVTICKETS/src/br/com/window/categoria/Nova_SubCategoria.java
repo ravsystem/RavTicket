@@ -103,8 +103,8 @@ public class Nova_SubCategoria extends JInternalFrame {
 		getContentPane().add(txtNome);
 		getContentPane().add(cbCateg);
 		
-		JButton btnNewButton = new JButton("Salvar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				SubCategoria sb = new SubCategoria();
@@ -121,23 +121,23 @@ public class Nova_SubCategoria extends JInternalFrame {
 				table.getModel();
 			}
 		});
-		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 18));
-		btnNewButton.setBounds(10, 386, 89, 33);
-		getContentPane().add(btnNewButton);
+		btnSalvar.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnSalvar.setBounds(10, 386, 89, 33);
+		getContentPane().add(btnSalvar);
 		
-		JButton btnNewButton_1 = new JButton("Limpar");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtNome.setText("");
 				cbCateg.setSelectedIndex(0);
 			}
 		});
-		btnNewButton_1.setFont(new Font("SansSerif", Font.BOLD, 18));
-		btnNewButton_1.setBounds(109, 386, 106, 33);
-		getContentPane().add(btnNewButton_1);
+		btnLimpar.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnLimpar.setBounds(109, 386, 106, 33);
+		getContentPane().add(btnLimpar);
 		
-		JButton btnNewButton_2 = new JButton("Atualizar");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnAtt = new JButton("Atualizar");
+		btnAtt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				SubCategoria subcategoriaremovetable = new SubCategoria();
@@ -164,20 +164,21 @@ public class Nova_SubCategoria extends JInternalFrame {
 				table.getModel();
 			}
 		});
-		btnNewButton_2.setFont(new Font("SansSerif", Font.BOLD, 18));
-		btnNewButton_2.setBounds(225, 386, 115, 33);
-		getContentPane().add(btnNewButton_2);
+		btnAtt.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnAtt.setBounds(225, 386, 115, 33);
+		btnAtt.setVisible(false);
+		getContentPane().add(btnAtt);
 		
-		JButton btnNewButton_3 = new JButton("Voltar");
-		btnNewButton_3.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				Nova_SubCategoria.this.dispose();
 			}
 		});
-		btnNewButton_3.setFont(new Font("SansSerif", Font.BOLD, 18));
-		btnNewButton_3.setBounds(350, 386, 89, 33);
-		getContentPane().add(btnNewButton_3);
+		btnVoltar.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnVoltar.setBounds(350, 386, 89, 33);
+		getContentPane().add(btnVoltar);
 		
 		table = new JTable();
 
@@ -200,14 +201,30 @@ public class Nova_SubCategoria extends JInternalFrame {
 		scrollPane.setBounds(451, 91, 373, 328);
 		getContentPane().add(scrollPane);
 		
+		JButton btnNovo = new JButton("Novo");
+		btnNovo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnSalvar.setVisible(true);
+				btnAtt.setVisible(false);
+			}
+		});
+		btnNovo.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNovo.setBounds(10, 187, 89, 33);
+		btnNovo.setVisible(false);
+		getContentPane().add(btnNovo);
+		
 		ImageIcon iconEdit = new ImageIcon(Novo_agente.class.getResource("/br/com/img/edit.png"));
 		Image imaEdit = iconEdit.getImage();
 		Image imagemEdit = imaEdit.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
 		Icon icoEdit = new ImageIcon(imagemEdit);
 		
-		JButton button = new JButton(icoEdit);
-		button.addActionListener(new ActionListener() {
+		JButton btnEdit = new JButton(icoEdit);
+		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				btnSalvar.setVisible(false);
+				btnAtt.setVisible(true);
+				btnNovo.setVisible(true);
 				
 				SubCategoria subcategoria = new SubCategoria();
 				
@@ -217,22 +234,32 @@ public class Nova_SubCategoria extends JInternalFrame {
 				Long idaux = Long.valueOf(id);
 				
 				subcategoria = Conexao.selecionaSubCategoria(idaux);
+					
+				/*for(int i = 0; i > categs.size(); i++) {
+					
+					if(tp_test[i].equals(categTest)) {
+						index = i;
+					}
+				}
+					
+				System.out.println(tp_test[0].toString() +"      " +subcategoria.getCategoria() +"   " +subcategoria.getDescr() +"     " +index);
+				*/
 				
 				txtNome.setText(String.valueOf(subcategoria.getDescr()));
 				txtId.setText(String.valueOf(subcategoria.getIn()));
 				cbCateg.setSelectedItem(subcategoria.getCategoria());
 			}
 		});
-		button.setBounds(782, 46, 42, 33);
-		getContentPane().add(button);
+		btnEdit.setBounds(782, 46, 42, 33);
+		getContentPane().add(btnEdit);
 		
 		ImageIcon iconRe = new ImageIcon(Novo_agente.class.getResource("/br/com/img/delete.png"));
 		Image imaRe = iconRe.getImage();
 		Image imagemRe = imaRe.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
 		Icon icoRe = new ImageIcon(imagemRe);
 		
-		JButton button_1 = new JButton(icoRe);
-		button_1.addActionListener(new ActionListener() {
+		JButton btnRemov = new JButton(icoRe);
+		btnRemov.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				SubCategoria subcategoria = new SubCategoria();
@@ -250,8 +277,8 @@ public class Nova_SubCategoria extends JInternalFrame {
 				
 			}
 		});
-		button_1.setBounds(728, 46, 42, 33);
-		getContentPane().add(button_1);
+		btnRemov.setBounds(728, 46, 42, 33);
+		getContentPane().add(btnRemov);
 		
 		ImageIcon iconB = new ImageIcon(Novo_agente.class.getResource("/br/com/img/back.png"));
 		Image imaB = iconB.getImage();
@@ -276,6 +303,8 @@ public class Nova_SubCategoria extends JInternalFrame {
 		txtId.setVisible(false);
 		getContentPane().add(txtId);
 		txtId.setColumns(10);
+		
+		
 		
 
 		//getContentPane().add(table);

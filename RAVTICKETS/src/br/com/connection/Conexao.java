@@ -259,6 +259,7 @@ public class Conexao {
 			
 			subCategoria.setIn(subCategorias.get(i).getIn());
 			subCategoria.setDescr(subCategorias.get(i).getDescr());
+			subCategoria.setCategoria(subCategorias.get(i).getCategoria());
 
 		}
 		

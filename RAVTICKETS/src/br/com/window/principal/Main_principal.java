@@ -12,6 +12,9 @@ import javax.swing.border.EmptyBorder;
 import br.com.connection.Conexao;
 import br.com.window.agente.NovoAgente;
 import br.com.window.agente.Novo_agente;
+import br.com.window.categoria.NovaCategoria;
+import br.com.window.categoria.NovaItemCategoria;
+import br.com.window.categoria.NovaSubCategoria;
 import br.com.window.categoria.Nova_SubCategoria;
 import br.com.window.categoria.Nova_categoria;
 import br.com.window.categoria.Novo_itemCategoria;
@@ -88,6 +91,7 @@ public class Main_principal extends JFrame {
 		menuBar.add(mnTickets);
 		
 		JMenuItem mntmNovo = new JMenuItem("Novo");
+		mntmNovo.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		mntmNovo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
@@ -103,9 +107,11 @@ public class Main_principal extends JFrame {
 		mnTickets.add(mntmNovo);
 		
 		JMenuItem mntmListar = new JMenuItem("Listar");
+		mntmListar.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		mnTickets.add(mntmListar);
 		
 		JMenuItem mntmBuscar = new JMenuItem("Buscar");
+		mntmBuscar.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		mnTickets.add(mntmBuscar);
 		
 		menuBar.add(Box.createGlue());
@@ -117,6 +123,7 @@ public class Main_principal extends JFrame {
 		menuBar.add(mnClientes);
 		
 		JMenuItem mntmNovo_1 = new JMenuItem("Novo");
+		mntmNovo_1.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		mntmNovo_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -140,15 +147,17 @@ public class Main_principal extends JFrame {
 		menuBar.add(mnCategoria);
 		
 		JMenuItem mntmNovo_3 = new JMenuItem("Nova");
+		mntmNovo_3.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		mntmNovo_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Nova_categoria nova_categoria = new Nova_categoria();
-				desktopPane.add(nova_categoria);
-				contentPane.add(desktopPane);
+				NovaCategoria nova_categoria = new NovaCategoria();
 				nova_categoria.setResizable(false);
-				centralizaForm(nova_categoria);
-				nova_categoria.show();
+				nova_categoria.setUndecorated(true);
+				nova_categoria.setLocationRelativeTo(null);
+				nova_categoria.setAlwaysOnTop(true);
+				nova_categoria.setVisible(true);
+
 			}
 		});
 		mnCategoria.add(mntmNovo_3);
@@ -160,15 +169,17 @@ public class Main_principal extends JFrame {
 		menuBar.add(mnSubcategoria);
 		
 		JMenuItem mntmNova = new JMenuItem("Nova");
+		mntmNova.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		mntmNova.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Nova_SubCategoria nova_subcategoria = new Nova_SubCategoria();
-				desktopPane.add(nova_subcategoria);
-				contentPane.add(desktopPane);
+				NovaSubCategoria nova_subcategoria = new NovaSubCategoria();
 				nova_subcategoria.setResizable(false);
-				centralizaForm(nova_subcategoria);
-				nova_subcategoria.show();
+				nova_subcategoria.setUndecorated(true);
+				nova_subcategoria.setLocationRelativeTo(null);
+				nova_subcategoria.setAlwaysOnTop(true);
+				nova_subcategoria.setVisible(true);
+
 			}
 		});
 		mnSubcategoria.add(mntmNova);
@@ -180,15 +191,17 @@ public class Main_principal extends JFrame {
 		menuBar.add(mnItemCategoria);
 		
 		JMenuItem mntmNova_1 = new JMenuItem("Novo");
+		mntmNova_1.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		mntmNova_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Novo_itemCategoria nova_itemcategoria = new Novo_itemCategoria();
-				desktopPane.add(nova_itemcategoria);
-				contentPane.add(desktopPane);
+				NovaItemCategoria nova_itemcategoria = new NovaItemCategoria();
 				nova_itemcategoria.setResizable(false);
-				centralizaForm(nova_itemcategoria);
-				nova_itemcategoria.show();
+				nova_itemcategoria.setUndecorated(true);
+				nova_itemcategoria.setLocationRelativeTo(null);
+				nova_itemcategoria.setAlwaysOnTop(true);
+				nova_itemcategoria.setVisible(true);
+				
 			}
 		});
 		mnItemCategoria.add(mntmNova_1);
@@ -213,6 +226,7 @@ public class Main_principal extends JFrame {
 		menuBar.add(mnAgentes);
 		
 		JMenuItem mntmNovo_2 = new JMenuItem("Novo");
+		mntmNovo_2.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		mntmNovo_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -263,8 +277,6 @@ public class Main_principal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
 		
 	}
 }

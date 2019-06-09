@@ -200,6 +200,7 @@ public class Nova_categoria extends JInternalFrame {
 				txtNome.setText(String.valueOf(categoria.getDescr()));
 				txtId.setText(String.valueOf(categoria.getId()));
 				
+				
 			}
 		});
 		btnEdit.setBounds(882, 43, 42, 33);

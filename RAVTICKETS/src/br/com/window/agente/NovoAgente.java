@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -24,8 +25,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
 
 import br.com.connection.Conexao;
 import br.com.model.Agente;
@@ -65,7 +69,6 @@ public class NovoAgente extends JFrame {
 		setBounds(100, 100, 950, 460);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		List<Agente> produts = Conexao.listarAgent();
@@ -154,7 +157,7 @@ public class NovoAgente extends JFrame {
 						cb_tipo_usuario.setSelectedIndex(0);
 						txtId.setText("");
 						
-						JOptionPane.showMessageDialog(NovoAgente.this, "Usuário Salvo com Sucesso!");
+						JOptionPane.showMessageDialog(NovoAgente.this, "Agente Salvo com Sucesso!");
 						
 					}else if(tipo.equals("N2")) {
 						Agente n2 = new Agente();
@@ -238,7 +241,7 @@ public class NovoAgente extends JFrame {
 		btnLimpar.setFont(new Font("SansSerif", Font.BOLD, 18));
 		
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(353, 376, 100, 33);
+		btnVoltar.setBounds(229, 376, 100, 33);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -248,7 +251,7 @@ public class NovoAgente extends JFrame {
 		});
 		btnVoltar.setFont(new Font("SansSerif", Font.BOLD, 18));
 		
-		ImageIcon iconB = new ImageIcon(Novo_agente.class.getResource("/br/com/img/back.png"));
+		ImageIcon iconB = new ImageIcon(NovoAgente.class.getResource("/br/com/img/back.png"));
 		Image imaB = iconB.getImage();
 		Image imagemB = imaB.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
 		Icon icoB = new ImageIcon(imagemB);
@@ -284,6 +287,7 @@ public class NovoAgente extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(462, 89, 462, 320);
 		getContentPane().setLayout(null);
+		contentPane.setLayout(null);
 		getContentPane().add(lblCadastrarNovoAgente);
 		getContentPane().add(lblX);
 		getContentPane().add(lblNome);
@@ -305,7 +309,6 @@ public class NovoAgente extends JFrame {
 				Agente agente = new Agente();
 				
 				String id = txtId.getText();
-				Long idaux = Long.valueOf(id);
 				
 				if(id.equals("") || id.equals(null)) {
 					
@@ -313,6 +316,7 @@ public class NovoAgente extends JFrame {
 					
 				}else {
 				
+					Long idaux = Long.valueOf(id);
 				
 					try {
 					agenteremovetable = Conexao.selecionaAgente(idaux);
@@ -353,7 +357,7 @@ public class NovoAgente extends JFrame {
 			}
 		});
 		btnAtualizar.setFont(new Font("SansSerif", Font.BOLD, 18));
-		btnAtualizar.setBounds(229, 376, 112, 33);
+		btnAtualizar.setBounds(341, 376, 112, 33);
 		btnAtualizar.setVisible(false);
 		getContentPane().add(btnAtualizar);
 		
@@ -376,7 +380,7 @@ public class NovoAgente extends JFrame {
 		btnNovo.setVisible(false);
 		getContentPane().add(btnNovo);
 		
-		ImageIcon iconEdit = new ImageIcon(Novo_agente.class.getResource("/br/com/img/edit.png"));
+		ImageIcon iconEdit = new ImageIcon(NovoAgente.class.getResource("/br/com/img/edit.png"));
 		Image imaEdit = iconEdit.getImage();
 		Image imagemEdit = imaEdit.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
 		Icon icoEdit = new ImageIcon(imagemEdit);
@@ -431,7 +435,7 @@ public class NovoAgente extends JFrame {
 		getContentPane().add(txtId);
 		txtId.setColumns(10);
 		
-		ImageIcon iconRe = new ImageIcon(Novo_agente.class.getResource("/br/com/img/delete.png"));
+		ImageIcon iconRe = new ImageIcon(NovoAgente.class.getResource("/br/com/img/delete.png"));
 		Image imaRe = iconRe.getImage();
 		Image imagemRe = imaRe.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
 		Icon icoRe = new ImageIcon(imagemRe);
@@ -479,7 +483,7 @@ public class NovoAgente extends JFrame {
 				}
 		}
 		});
-		btnRemove.setBounds(814, 44, 49, 33);
+		btnRemove.setBounds(814, 43, 49, 33);
 		getContentPane().add(btnRemove);
 	}
 

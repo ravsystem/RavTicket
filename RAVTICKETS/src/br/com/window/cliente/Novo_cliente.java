@@ -191,18 +191,18 @@ public class Novo_cliente extends JInternalFrame {
 					cliente.setData_cadastro(String.valueOf(dtf.format(atual)));
 					
 					
-					//try {
+					try {
 					
 					Conexao.guardar(cliente);
 					
-					//}catch(NullPointerException f) {
-					//	JOptionPane.showMessageDialog(null,"Ops.. Deve ter faltado preencher algo ai moral: \n" +f);
-					//}
-					//catch(Exception npe){
-					//	JOptionPane.showMessageDialog(null, "Ops.. Erro ao gravar cliente: \n" +npe);
-					//}
+					}catch(NullPointerException f) {
+						JOptionPane.showMessageDialog(null,"Ops.. Deve ter faltado preencher algo ai moral: \n" +f);
+					}
+					catch(Exception npe){
+						JOptionPane.showMessageDialog(null, "Ops.. Erro ao gravar cliente: \n" +npe);
+					}
 					
-					//JOptionPane.showMessageDialog(null, "Cliente Salvo com Sucesso!");
+					JOptionPane.showMessageDialog(null, "Cliente Salvo com Sucesso!");
 					
 					modelo.addCliente(cliente);
 					tableCliente.getModel();

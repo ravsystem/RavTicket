@@ -136,24 +136,16 @@ public class Novo_agente extends JInternalFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String usuario = txt_usuario.getText();
-				String senha = txt_senha.getText();
-				String tipo = cb_tipo_usuario.getSelectedItem().toString();
-				
-				if(tipo.equals("ADM")) {
-					Agente agente = new Agente();
-					agente.setNome(usuario);
-					agente.setSenha(senha);
-					agente.setTipo(tipo);
+				if(txt_usuario.getText().equals("") || txt_senha.getText().equals("")) {
 					
-					try {
+					JOptionPane.showMessageDialog(null, "PorFavor Cidadão, tenha vergonha na cara e preencha o usuário e senha para poder salvar!!");
 					
-					Conexao.guardar(agente);
+				}else {
 					
-<<<<<<< Updated upstream
-					}catch(Exception io) {
-						JOptionPane.showMessageDialog(null, "Erro ao Gravar.:");
-=======
+					String usuario = txt_usuario.getText();
+					String senha = txt_senha.getText();
+					String tipo = cb_tipo_usuario.getSelectedItem().toString();
+					
 					if(tipo.equals("ADM")) {
 						Agente agente = new Agente();
 						agente.setNome(usuario);
@@ -217,53 +209,18 @@ public class Novo_agente extends JInternalFrame {
 						
 						modelo.addAgente(n1);
 						table.getModel();
->>>>>>> Stashed changes
 					}
 					
-					modelo.addAgente(agente);
-					table.getModel();
 					
-				}else if(tipo.equals("N2")) {
-					Agente n2 = new Nivel2();
-					n2.setNome(usuario);
-					n2.setSenha(senha);
-					n2.setTipo(tipo);
 					
-					try {
+					txt_usuario.setText("");
+					txt_senha.setText("");
+					cb_tipo_usuario.setSelectedIndex(0);
 					
-						Conexao.guardar(n2);
+					JOptionPane.showMessageDialog(null, "Usuário Salvo com Sucesso!");
 					
-					}catch(Exception io) {
-						JOptionPane.showMessageDialog(null, "Erro ao Gravar.:");
 					}
-					
-					modelo.addAgente(n2);
-					table.getModel();
-				}else {
-					
-					Agente n1 = new Nivel1();
-					n1.setNome(usuario);
-					n1.setSenha(senha);
-					n1.setTipo(tipo);
-					
-					try {
-						Conexao.guardar(n1);
-					
-					}catch(Exception io) {
-						JOptionPane.showMessageDialog(null, "Erro ao Gravar.:");
-					}
-					
-					modelo.addAgente(n1);
-					table.getModel();
-				}
 				
-				
-				
-				txt_usuario.setText("");
-				txt_senha.setText("");
-				cb_tipo_usuario.setSelectedIndex(0);
-				
-				//JOptionPane.showMessageDialog(null, "Usuário Salvo com Sucesso!");
 			}
 		});
 		btnSalvar.setFont(new Font("SansSerif", Font.BOLD, 18));
@@ -340,35 +297,6 @@ public class Novo_agente extends JInternalFrame {
 		getContentPane().add(btnLimpar);
 		getContentPane().add(btnVoltar);
 		
-		ImageIcon iconEdit = new ImageIcon(Novo_agente.class.getResource("/br/com/img/edit.png"));
-		Image imaEdit = iconEdit.getImage();
-		Image imagemEdit = imaEdit.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
-		Icon icoEdit = new ImageIcon(imagemEdit);
-		
-		JButton btnNewButton = new JButton(icoEdit);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				Agente agente = new Agente();
-				
-				auxline = table.getSelectedRow();
-				String id = table.getValueAt(auxline, 0).toString();
-				
-				Long idaux = Long.valueOf(id);
-				
-				System.out.println("mostrou a porra do id>.: " +idaux);
-				
-				agente = Conexao.selecionaAgente(idaux);
-				
-				txtId.setText(String.valueOf(agente.getId()));
-				txt_usuario.setText(agente.getNome());
-				txt_senha.setText(agente.getSenha());
-				cb_tipo_usuario.setSelectedItem(agente.getTipo());
-			}
-		});
-		btnNewButton.setBounds(875, 43, 49, 33);
-		getContentPane().add(btnNewButton);
-		
 		JButton btnAtualizar = new JButton("Atualizar");
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -379,16 +307,31 @@ public class Novo_agente extends JInternalFrame {
 				String id = txtId.getText();
 				Long idaux = Long.valueOf(id);
 				
-				agenteremovetable = Conexao.selecionaAgente(idaux);
 				
+				try {
+				agenteremovetable = Conexao.selecionaAgente(idaux);
+				}catch(NullPointerException f) {
+					JOptionPane.showMessageDialog(null,"Erro ao Listar Agentes: \n" +f);
+				}
+				catch(Exception npe){
+					JOptionPane.showMessageDialog(null, "Erro ao Listar Agentes: \n" +npe);
+				}
 				agente.setId(idaux);
 				agente.setNome(txt_usuario.getText());
 				agente.setSenha(txt_senha.getText());
 				agente.setTipo(cb_tipo_usuario.getSelectedItem().toString());
 				
+				
 				modelo.removeAgente(auxline);
 				
-				Conexao.alterar(agente);
+				try {
+					
+					Conexao.alterar(agente);
+				
+				}
+				catch(Exception npe){
+					JOptionPane.showMessageDialog(null, "Erro ao alterar Agente: \n" +npe);
+				}
 				
 				txt_usuario.setText("");
 				txt_senha.setText("");
@@ -397,11 +340,65 @@ public class Novo_agente extends JInternalFrame {
 				modelo.addAgente(agente);
 				table.getModel();
 				
+				JOptionPane.showMessageDialog(null, "Agente Alterado com sucesso!!");
+				
 			}
 		});
 		btnAtualizar.setFont(new Font("SansSerif", Font.BOLD, 18));
 		btnAtualizar.setBounds(229, 376, 112, 33);
+		btnAtualizar.setVisible(false);
 		getContentPane().add(btnAtualizar);
+		
+		JButton btnNovo = new JButton("Novo");
+		btnNovo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnSalvar.setVisible(true);
+				btnAtualizar.setVisible(false);
+			}
+		});
+		btnNovo.setFont(new Font("SansSerif", Font.BOLD, 18));
+		btnNovo.setBounds(10, 202, 95, 33);
+		btnNovo.setVisible(false);
+		getContentPane().add(btnNovo);
+		
+		ImageIcon iconEdit = new ImageIcon(Novo_agente.class.getResource("/br/com/img/edit.png"));
+		Image imaEdit = iconEdit.getImage();
+		Image imagemEdit = imaEdit.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+		Icon icoEdit = new ImageIcon(imagemEdit);
+		
+		JButton btnNewButton = new JButton(icoEdit);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				btnSalvar.setVisible(false);
+				btnAtualizar.setVisible(true);
+				
+				Agente agente = new Agente();
+				
+				auxline = table.getSelectedRow();
+				String id = table.getValueAt(auxline, 0).toString();
+				
+				Long idaux = Long.valueOf(id);
+				
+				System.out.println("mostrou a porra do id>.: " +idaux);
+				
+				try {
+				
+				agente = Conexao.selecionaAgente(idaux);
+				
+				}
+				catch(Exception npe){
+					JOptionPane.showMessageDialog(null, "Erro ao listar Agentes: \n" +npe);
+				}
+				
+				txtId.setText(String.valueOf(agente.getId()));
+				txt_usuario.setText(agente.getNome());
+				txt_senha.setText(agente.getSenha());
+				cb_tipo_usuario.setSelectedItem(agente.getTipo());
+			}
+		});
+		btnNewButton.setBounds(875, 43, 49, 33);
+		getContentPane().add(btnNewButton);
 		
 		txtId = new JTextField();
 		txtId.setEnabled(false);
@@ -429,10 +426,27 @@ public class Novo_agente extends JInternalFrame {
 				
 				agente = Conexao.selecionaAgente(idaux);
 				
-				Conexao.removeAgente(agente);
+				if(JOptionPane.showConfirmDialog(null, "Deseja mesmo excluir o Agente selecionado?") == 1) {
 				
-				modelo.removeAgente(auxline);
-			}
+					try {
+						
+						Conexao.removeAgente(agente);
+					
+					}
+					catch(Exception npe){
+						JOptionPane.showMessageDialog(null, "Erro ao remover Agente: \n" +npe);
+					}
+					
+					modelo.removeAgente(auxline);
+					
+					txt_usuario.setText("");
+					txt_senha.setText("");
+					cb_tipo_usuario.setSelectedIndex(0);
+					
+					JOptionPane.showMessageDialog(null, "Agente Excluido com sucesso!!");
+				
+				}
+		}
 		});
 		btnRemove.setBounds(814, 44, 49, 33);
 		getContentPane().add(btnRemove);

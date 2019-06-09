@@ -22,12 +22,12 @@ public class ItemCategoriaTableModel extends AbstractTableModel{
 	
     public int getColumnCount() {
     	//Quantidade de Colunas da tabela, no caso aqui são 4.
-        return 2;
+        return 3;
     }
     
     public String getColumnName(int columnIndex) {
     	 //Nome das colunas da JTable
-        String colunas[] = {"Codigo", "Nome"};
+        String colunas[] = {"Codigo", "Nome", "SubCategoria"};
         return colunas[columnIndex];
     }
     
@@ -35,7 +35,8 @@ public class ItemCategoriaTableModel extends AbstractTableModel{
     	//Retornar o valor da coluna column e da linha row da JTable.
     	ItemCategoria itemCategoria = linhasItemCategorias.get(row);
         if (column == 0) return itemCategoria.getId();
-        else return itemCategoria.getNome();
+        if (column == 1) return itemCategoria.getNome();
+        else return itemCategoria.getCategoria();
     }
     
     @Override
@@ -45,6 +46,7 @@ public class ItemCategoriaTableModel extends AbstractTableModel{
      
     	if (columnIndex == 0) itemCategoria.setId((Long)aValue);
         else if (columnIndex == 1) itemCategoria.setNome((String)aValue);
+        else if (columnIndex == 2) itemCategoria.setCategoria((String)aValue);
         else throw new IndexOutOfBoundsException("columnIndex out of bounds");
         	
         fireTableCellUpdated(rowIndex, columnIndex); // Notifica a atualização da célula
