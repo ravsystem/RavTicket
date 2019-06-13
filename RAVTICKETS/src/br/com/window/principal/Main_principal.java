@@ -18,8 +18,10 @@ import br.com.window.categoria.NovaSubCategoria;
 import br.com.window.categoria.Nova_SubCategoria;
 import br.com.window.categoria.Nova_categoria;
 import br.com.window.categoria.Novo_itemCategoria;
+import br.com.window.cliente.NovoCliente;
 import br.com.window.cliente.Novo_cliente;
 import br.com.window.login.Login;
+import br.com.window.tickts.NovoTicket;
 import br.com.window.tickts.Novo_ticket;
 
 import javax.swing.JMenuBar;
@@ -75,9 +77,6 @@ public class Main_principal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, Integer.valueOf((int) tk.getWidth()), Integer.valueOf((int) tk.getHeight()));
 		
-		//desktopPane = new JDesktopPane();
-		//desktopPane.setBounds(0, 0, Integer.valueOf((int) tk.getWidth()), Integer.valueOf((int) tk.getHeight()));
-		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.desktop);
 		menuBar.setForeground(SystemColor.desktop);
@@ -96,12 +95,12 @@ public class Main_principal extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				
-				Novo_ticket novo_ticket = new Novo_ticket();
-				desktopPane.add(novo_ticket);
-				contentPane.add(desktopPane);
+				NovoTicket novo_ticket = new NovoTicket();
 				novo_ticket.setResizable(false);
-				centralizaForm(novo_ticket);
-				novo_ticket.show();
+				novo_ticket.setUndecorated(true);
+				novo_ticket.setLocationRelativeTo(null);
+				novo_ticket.setAlwaysOnTop(true);
+				novo_ticket.setVisible(true);
 			}
 		});
 		mnTickets.add(mntmNovo);
@@ -127,12 +126,12 @@ public class Main_principal extends JFrame {
 		mntmNovo_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Novo_cliente novo_cliente = new Novo_cliente();
-				desktopPane.add(novo_cliente);
-				contentPane.add(desktopPane);
+				NovoCliente novo_cliente = new NovoCliente();
 				novo_cliente.setResizable(false);
-				centralizaForm(novo_cliente);
-				novo_cliente.show();
+				novo_cliente.setUndecorated(true);
+				novo_cliente.setLocationRelativeTo(null);
+				novo_cliente.setAlwaysOnTop(true);
+				novo_cliente.setVisible(true);
 			}
 		});
 		mnClientes.add(mntmNovo_1);

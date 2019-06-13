@@ -164,6 +164,30 @@ public class Conexao {
 		return resultado;
 	}
 	
+	public static List<SubCategoria> categoriaInSubcategoria(String categ) {
+		
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("FROM SubCategoria o where o.Categoria = :categ");
+		query.setParameter("categ", categ);
+		
+		@SuppressWarnings("unchecked")
+		List<SubCategoria> subcategs = query.getResultList();
+        
+		return subcategs;
+	}
+	
+	public static List<ItemCategoria> subCategoriaInItemcategoria(String categ) {
+		
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("FROM ItemCategoria o where o.Categoria = :categ");
+		query.setParameter("categ", categ);
+		
+		@SuppressWarnings("unchecked")
+		List<ItemCategoria> itemcategs = query.getResultList();
+        
+		return itemcategs;
+	}
+	
 	public static boolean tipoAgente(String nome) {
 		
 		boolean resultado = false;

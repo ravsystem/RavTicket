@@ -391,6 +391,7 @@ public class NovaItemCategoria extends JFrame {
 		txtId.setEnabled(false);
 		txtId.setEditable(false);
 		txtId.setColumns(10);
+		txtId.setVisible(false);
 		
 		ImageIcon iconB = new ImageIcon(Novo_agente.class.getResource("/br/com/img/back.png"));
 		Image imaB = iconB.getImage();
